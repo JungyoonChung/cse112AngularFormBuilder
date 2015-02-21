@@ -1,6 +1,6 @@
 'use strict';
 
-angularApp.controller('CreateCtrl', function ($scope, $dialog, FormService) {
+angularApp.controller('CreateCtrl', function ($scope, $dialog, $http, FormService) {
 
     // preview form mode
     $scope.previewMode = false;
@@ -45,6 +45,23 @@ angularApp.controller('CreateCtrl', function ($scope, $dialog, FormService) {
         $scope.form.form_fields.push(newField);
     }
 
+    $scope.postJson = function (){
+        var dataObj = { 
+            form_id : $scope.form.form_id,
+            form_name : $scope.form.form_name,
+            form_fields : $scope.form.form_fields
+        };
+ 
+        var res = $http.post('/formpost', dataObj);
+    
+        res.success(function(data, status, headers, config) {
+			$scope.message = data;
+		});
+		res.error(function(data, status, headers, config) {
+			alert( "failure message: " + JSON.stringify({data: data}));
+		});	
+    }
+    
     // deletes particular field on button click
     $scope.deleteField = function (field_id){
         for(var i = 0; i < $scope.form.form_fields.length; i++){
@@ -54,7 +71,7 @@ angularApp.controller('CreateCtrl', function ($scope, $dialog, FormService) {
             }
         }
     }
-
+    
     // add new option to the field
     $scope.addOption = function (field){
         if(!field.field_options)
@@ -125,6 +142,7 @@ angularApp.controller('CreateCtrl', function ($scope, $dialog, FormService) {
         $scope.addField.lastAddedID = 0;
     }
 });
+                
 
 sig.controller('signatureCtrl', ['$scope', function ($scope) {
     $scope.clearVal = 0;
