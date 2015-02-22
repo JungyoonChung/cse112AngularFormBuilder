@@ -17,6 +17,10 @@ angularApp.config(function ($routeProvider) {
             templateUrl: 'views/view.html',
             controller: 'ViewCtrl'
         })
+        .when('/forms/data', {
+            templateUrl: 'views/data.html',
+            controller: 'DataCtrl'
+        })
         .otherwise({
             redirectTo: '/'
         });

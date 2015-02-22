@@ -2,8 +2,9 @@
 
 angularApp.service('FormService', function FormService($http) {
 
-    var formsJsonPath = './static-data/sample_forms.json';
-
+    // this can't be hardcoded. Unsure how to make that happen.
+    var formsJsonPath = './static-data/test_data.json';
+    
     return {
         fields:[
             {

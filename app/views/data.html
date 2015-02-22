@@ -1,0 +1,9 @@
+<div class="text-center">
+    <!-- somehow make this display all available forms. ng-repeat?  only works for 2 right now -->
+    <li ng-class="{active: ($location.path() == '/forms/view') }">
+        <a class="btn btn-small btn-primary" href="#/forms/1/view">form 1</a>
+    </li>
+    <li ng-class="{active: ($location.path() == '/forms/view') }">
+        <a class="btn btn-small btn-primary" href="#/forms/2/view">form 2</a>
+    </li>
+</div>
